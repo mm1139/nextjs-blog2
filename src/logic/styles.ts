@@ -7,9 +7,12 @@ type useColorMode = (isDark?: boolean) => {
 
 export const useToggleColoerMode: useColorMode = (isInitDark = false) => {
   const [isDarkMode, toggleTheme] = useState<boolean>(isInitDark)
-
   const toggle = useCallback((isDark?) => {
-    if (typeof isDark === undefined) {
+    console.log('toggle--')
+    console.log(isDark)
+
+    if (typeof isDark === 'undefined') {
+      console.log('isDark--')
       toggleTheme((state) => !state)
       return
     }
@@ -17,6 +20,8 @@ export const useToggleColoerMode: useColorMode = (isInitDark = false) => {
   }, [])
 
   useEffect(() => {
+    console.log('useEffect--')
+    console.log(isDarkMode)
     if (isDarkMode) {
       document.documentElement.classList.add('dark')
     } else {
